@@ -1,0 +1,128 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Swipe
+{% endblock %}
+
+{% block main %}
+<div class="search pb-4">
+
+<h2 class = "title1 title-border">{{trip_title}}</h2>
+
+</div>
+
+<!-- <form action = "/swipe" method = "post"> -->
+    <input name = "trips_id" type = "hidden" value ={{trips_id}}>
+
+        <div class="cardcontainer list" id="cardcontainer">
+            <!-- ここにyesがつく -->
+            <div class="cardlist">
+                {% for i in display_photo %}
+                    <div class="card_cont">
+                        <li>
+                            <img class="index_image_index" align="center" src="{{display_photo[i]}}" alt="" style="width: 50%; border-radius: 10px;">
+                        </li>
+                        <label class="mt-3"><p class="ml-1" style = "font-size: x-large;">{{ i }}</p></label>
+                        <div class="mt-1 mb-3" id="ev_btn">
+                            <button class="but-nope btn-secondary btn-circle btn-circle-sm m-1">×</button>
+                            <button id="like" class="but-yay btn-danger btn-circle btn-circle-sm m-1" value="{{ i }}">❤︎</button>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+                <form action = "/swipe" method = "post">
+                    <input name = "trips_id" type = "hidden" value ={{trips_id}}>
+                    <input name = "like" id="list" type = "hidden" value = list>
+                    <input type= "submit" value = "好みを送信"  class = "btn btn-secondary">
+                </form>
+
+            </div>
+        </div>
+        <script>
+            ///////////////////スワイプの実装///////////////////////
+
+        like_cards=[];
+
+        let card = document.querySelector(".card_cont");
+            card.classList.add("current");
+        let cardcontainer = document.getElementById("cardcontainer");
+        function animatecard(ev) {
+            let t = ev.target;
+            if (t.className === 'but-nope btn-secondary btn-circle btn-circle-sm m-1') {
+                cardcontainer.classList.add('nope');
+            }
+            if (t.className === 'but-yay btn-danger btn-circle btn-circle-sm m-1') {
+                cardcontainer.classList.add('yes');
+                // var input = document.getElementById('like');
+                //     var value = input.getAttribute('value');
+                //     console.log('value')
+                //     console.log(value); // 入力内容
+                //     like_cards.push(value)
+            }
+        }
+        cardcontainer.addEventListener('click', animatecard);
+        //お気に入りの配列を一旦htmlにいれる
+        for(var k = 0; k < like_cards.length; k++)
+           	{
+            var todoList = document.createElement('li');
+            console.log(like_cards[k])
+            console.log('&&&&&&&&')
+            todoList.textContent = like_cards[k];
+            document.getElementById('list').appendChild(todoList);
+           	}
+
+        function animationdone(ev) {
+            let origin = ev.target.parentNode;
+            let yes_origin = document.querySelector('.yes')
+            let nope_origin = document.querySelector('.nope')
+                console.log(ev.animationName)
+                console.log(ev)
+                if (ev.animationName === 'yay')
+                {
+                    yes_origin.classList.remove('yes');
+                    var input = document.getElementById('like');
+                    var value = input.getAttribute('value');
+                    console.log('value')
+                    console.log(value); // お気に入り登録されたもの
+                    like_cards.push(value)
+                    console.log('like_cards')
+                    console.log(like_cards)//お気に入りの配列
+                    $('#list').val(like_cards);
+
+
+                    if(like_cards.length == 7)
+                    {
+
+                    }
+
+                }
+                if (ev.animationName === 'nope')
+                {
+                    nope_origin.classList.remove('nope');
+                }
+                if (ev.animationName === 'nope' ||
+                    ev.animationName === 'yay')
+                    {
+                    origin.querySelector('.current').remove();
+
+                    if (!origin.querySelector('.card_cont'))
+                    {
+                        let erro =document.querySelector('.cardcontainer')
+
+                        erro.innerHTML = "見つかりましたか？"
+                    }
+                    else {
+
+                        origin.querySelector('.card_cont').classList.add('current');
+                    }
+                }
+        }
+        document.body.addEventListener(
+        'animationend', animationdone
+        );
+
+        ///////////////////スワイプの実装////////////////////////
+        </script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+{% endblock %}

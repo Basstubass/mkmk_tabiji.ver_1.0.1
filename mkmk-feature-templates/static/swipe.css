@@ -1,0 +1,52 @@
+/* .card_cont {
+    width: 150px;
+    height: 200px;
+    display: block;
+    background: #666;
+    transform-origin: 50% 99%;
+  } */
+
+  @keyframes yay {
+    0% {
+      transform: rotate(0deg);
+      opacity: 1;
+    }
+
+    100% {
+      transform: rotate(20deg) translateY(-100px);
+      opacity: 0;
+    }
+  }
+  @keyframes nope {
+    0%{
+      transform: rotate(0deg);
+      opacity: 1;
+    }
+
+    100% {
+      transform: rotate(-20deg) translateY(-100px);
+      opacity: 0;
+    }
+  }
+  .cardcontainer.yes .card_cont {
+    animation: yay 0.8s ease-out;
+  }
+  .cardcontainer.nope .card_cont {
+    animation: nope 0.8s ease-out;
+  }
+  .card_cont {
+    display: none;
+  }
+  .current {
+    display: block;
+  }
+  .but-nope{
+    right: 12%;
+    position: relative;
+    font-size: 30px;
+  }
+  .but-yay{
+    left: 12%;
+    position: relative;
+    font-size: 30px;
+  }

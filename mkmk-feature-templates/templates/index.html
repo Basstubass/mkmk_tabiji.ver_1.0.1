@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+
+<h2 class = "title1 title-border">Trip</h2>
+    <div class="block1" style='background-image:url("static/tabi.png");'>
+        <form action="/" method="post" class="search_container">
+            <div class="form-group">
+                <img src="http://design.aekana.com/wp-content/uploads/2018/02/img_balloon.png" class="tabiji_balloon" style="height: 60px; width: 50px; position: absolute; left: 50%; top: 33%;">
+                <div class="form-container">
+                    <input size="25" autocomplete="off" autofocus class="form-control" name="newsite" placeholder="どこいく？" type="text">
+                    <input type="submit" id="event_submit" value="&#xf6ec" class="fas fa-hiking" style="font-size: 30px; color: burlywood;">
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <h2 class = "title1 title-border">Dest </h2>
+    <div class="block2">
+        <ul class="horizontal-list">
+            {% for photos,trips in data %}
+                <div class="card">
+                    <img class="card-img" src="{{ photos }}" alt="">
+                    <div class="card-text">
+                        <h1 class="card-title" >{{trips.trip_title}}</h1>
+                        <p class="card-text">出発日時：{{ trips.start_time }}</p>
+
+                    </div>
+                    <div class="card-info">
+                        <form action = "/spots" method = "post">
+                            <input name = "trips_id" type = "hidden" value = "{{trips.trips_id}}">
+                            <input name = "trip_title" type = "hidden" value = "{{trips.trip_title}}">
+                            <input type= "submit" value = "★"  class = "btn btn-outline-light">
+                        </form>
+                        <form action = "/route" method = "post">
+                            <input name = "trip_title" type = "hidden" value = {{trips.trip_title}}>
+                            <input name = "trips_id" type = "hidden" value = "{{trips.trips_id}}">
+                            <input type= "submit" value = "ルート"  class = "btn btn-outline-light">
+                        </form>
+                        <form action = "/trips_delete" method = "post">
+                            <input name = "trips_id" type = "hidden" value = "{{trips.trips_id}}">
+                            <input type= "submit" value = "消去"  class = "btn btn-outline-light">
+                        </form>
+                    </div>
+                    </div>
+            {% endfor %}
+        </ul>
+    </div>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+{% endblock %}
+{% block view %}
+    <div class="firstview" id="firstview">
+        <div class="firstText">
+            <p class="TextTyping" style="font-size: 20px;">発見と驚きの旅へ</p>
+            <div class="tabiji_veiw">
+                <p class="text-focus-in">Tabiji</p>
+                <h1></h1>
+            </div>
+        </div>
+    </div>
+    {% endblock %}

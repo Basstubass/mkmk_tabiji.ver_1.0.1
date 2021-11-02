@@ -1,0 +1,48 @@
+.search_container{
+    box-sizing: border-box;
+  }
+  .search_container input[type="text"]{
+    border: 1px solid #999;
+    padding: 3px 5px;
+    border-radius: 20px;
+    height: 2.5em;
+    overflow: hidden;
+  }
+  .search_container input[type="text"]:focus {
+    outline: 0;
+  }
+  .search_container input[type="submit"]{
+    cursor: pointer;
+    border: none;
+    background: none;
+    outline : none;
+    display: inline-block;
+  }
+  .fa-hiking{
+      position: relative;
+      top: 5px;
+  }
+  /*ブロック1*/
+  .block1 {
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    height: 300px;
+    background-size: contain;
+  }
+
+  /* 浮遊 */
+  .tabiji_balloon{
+    animation: balloon 5s linear infinite;
+    transform-origin: 50% 50%;
+    margin: 1rem 0 !important;
+  }
+   
+  @keyframes balloon {
+    0% { transform: translateY(0) }
+    25% { transform: translateY(-10px) }
+    50% { transform: translateY(0) }
+    75% { transform: translateY(-10px) }
+    100% { transform: translateY(0) }
+  }
+
+ 

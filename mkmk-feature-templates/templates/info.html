@@ -1,0 +1,87 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Information
+{% endblock %}
+
+{% block main %}
+    <h2 class = "title2">{{favorite_site}}</h2>
+    <div class = "container_info">
+
+        <!-- <img class="card-img-info" src="{{photo}}" alt=""> -->
+
+        <img class="card-img" src="static/map.png" alt="">
+
+        <table class="container_info_table">
+            <tr>
+                <th>名前</th>
+                <td>{{favorite_site}}</td>
+            </tr>
+            
+            <tr>
+
+            <th>営業時間</th>
+            <td>
+            {% for weekday_text in weekday_text %}
+                {{weekday_text}}<br>
+            {% endfor %}
+            </td>
+
+
+            </tr>
+
+            <tr>
+                <th>今は</th>
+                <td>{{open_now}}</td>
+            </tr>
+
+            <tr>
+            <!--住所なんでか英語-->
+                <th>住所</th>
+                <td>{{ address }}</td>
+            </tr>
+            
+            <tr>
+                <th>電話番号</th>
+                <td>{{ phone_number }}</td>
+            </tr>
+
+            <tr>
+                <th>評価</th>
+                <td id="star">
+                    <span class="star5_rating" data-rate="{{ rating }}"></span>
+                    {{ rating }}
+                </td>
+                    
+            </tr>
+
+            <tr>
+                <th>webサイト</th>
+                <td><a href='{{ website }}'>{{ website }}</a><td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        $('.star5_rating').each(function (index, e) {
+            //　レビューの値
+            let starRate = $(this).data('rate');
+
+            //　0.5で割り切れない場合
+            if(starRate%0.5!==0){
+            //　widthの値
+            let widthRate = Math.round(((starRate / 5) * 100), 2);
+
+            //　追加する疑似要素（星のレビュー値のdata-rate値、widthを設定する
+            let css = '.star5_rating[data-rate="' + starRate + '"]:after{width:' + widthRate + '%;}';
+
+            //　style要素を作成してCSSを設定
+            let style = $('<style>')
+            style.text(css);
+
+            //　style要素を全体に追加
+            $('body').append(style);
+            }
+        });
+    </script>
+{% endblock %}

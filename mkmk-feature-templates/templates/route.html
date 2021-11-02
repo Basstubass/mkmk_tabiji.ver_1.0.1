@@ -1,0 +1,141 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Route
+{% endblock %}
+
+{% block main %}
+    <div>
+    <!--スタートとゴール表示-->
+        <ul>
+        <ol>{{ origin }}</ol>
+        <ol id="list"></ol>
+        <ol>{{ destination }}</ol>
+        </ul>
+    </div>
+    <div id = "map_container" class="row">
+        <div id="gmap" class="col-xs-5"></div><!-- 地図を表示する領域 -->
+        <div id="sidebar" class="col-xs-5"></div>
+    </div>
+
+    <script>
+    favorite_dic=[];
+    // 順番通りに並べられた経由地
+    organized_waypoints=[];
+    var favorite_sites_list = JSON.parse('{{ favorite_sites_list|safe }}');
+    for (var i = 0; i < favorite_sites_list.length; i++)
+    {
+        console.log("###########################");
+        console.log(favorite_sites_list[i]);
+        console.log("###########################");
+        favorite_dic.push({location: favorite_sites_list[i]});
+    }
+
+    function initMap() {
+        //一時的に中心を東京に設定
+        var tokyo = {
+            lat: 35.6813818,
+            lng: 139.7660838
+        };
+        // 地図を生成して表示
+        var map = new google.maps.Map(document.getElementById("gmap"), {
+            zoom: 13,
+            center: tokyo,
+            mapTypeId: "roadmap"
+        });
+
+    directionsDisplay = new google.maps.DirectionsRenderer
+      ({
+        "map": map,
+        "preserveViewport": true,
+        "draggable": true
+      });
+
+    //DirectionsService のオブジェクトを生成
+    var directionsService = new google.maps.DirectionsService();
+
+    //DirectionsRenderer のオブジェクトを生成
+    var directionsRenderer = new google.maps.DirectionsRenderer();
+
+    //directionsRenderer と地図を紐付け
+
+    directionsRenderer.setMap(map);
+    directionsRenderer.setPanel(document.getElementById("sidebar"));
+
+    console.log('$$$$$');
+    console.log(organized_waypoints);
+
+
+
+    // ルートを取得するリクエスト
+    var request = {
+        origin: '{{origin}}',      // 出発地点の緯度経度
+        destination: '{{destination}}',   // 到着地点の緯度経度
+        travelMode: '{{mode}}', //トラベルモード（歩き）
+        waypoints: favorite_dic,
+        optimizeWaypoints: true
+    };
+
+        //DirectionsService のオブジェクトのメソッド route() にリクエストを渡し、
+        //コールバック関数で結果を setDirections(result) で directionsRenderer にセットして表示
+        directionsService.route(request, function(result, status) {
+            //ステータスがOKの場合、
+            if (status === 'OK') {
+            directionsRenderer.setDirections(result);
+            //取得したルート（結果：result）をセット
+            // API_IDの取得
+            API_ID_LEN = result.geocoded_waypoints.length;
+            console.log("#######################");
+            console.log(API_ID_LEN);
+            for(var i = 1; i<(API_ID_LEN-1); i++)
+            {
+                var place_id = result.geocoded_waypoints[i].place_id;
+                // 確認
+                console.log('place_id')
+                console.log(place_id)
+                // var request = {
+                //   placeId: 'place_id'
+                // };
+
+                var service = new google.maps.places.PlacesService(map);
+                // aaaaa
+                service.getDetails({
+            		placeId: place_id
+            	}, function(place, status) {
+            		if (status === google.maps.places.PlacesServiceStatus.OK) {
+            		var resultcontent = '';
+            		console.log('SSSSSSSSSSSSSSSSSS');
+            		console.log(place.name);
+            		organized_waypoint= place.name;
+            		console.log('organized_waypoint')
+            		console.log(organized_waypoint)
+                    organized_waypoints.push(organized_waypoint);
+                    var str = organized_waypoint;
+                    console.log('organized_waypoints');
+                    console.log(organized_waypoints);
+                    console.log(organized_waypoints.length)
+                    if(organized_waypoints.length == (API_ID_LEN-2))
+                    {
+                        for(var k = 0; k < organized_waypoints.length; k++)
+                       	{
+                        var todoList = document.createElement('li');
+                        console.log(organized_waypoints[k])
+                        console.log('&&&&&&&&')
+                        todoList.textContent = organized_waypoints[k];
+                        document.getElementById('list').appendChild(todoList);
+                       	}
+                    }
+                }
+            });}
+        }
+        else{
+            alert("取得できませんでした：" + status);
+            }
+        });
+    }
+    </script>
+    <script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6l8_ovgjjfsSIvw9oyFs5FzlT71Hutk8&libraries=places&callback=initMap">
+</script>
+
+{% endblock %}

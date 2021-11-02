@@ -1,0 +1,761 @@
+html {
+  font-family: 'Kosugi', sans-serif;
+}
+
+main .form-control
+{
+    /* Center form controls */
+    display: inline-block;
+
+    /* Override Bootstrap's 100% width for form controls */
+    width: auto;
+}
+
+main
+{
+    /* Scroll horizontally as needed */
+    overflow-x: auto;
+
+    /* Center contents */
+    text-align: center;
+}
+
+main img
+{
+    /* Constrain images on small screens */
+    max-width: 100%;
+}
+
+.delete
+{
+    color: grey;
+}
+
+.btn btn-primary {
+  background:#64485C;
+  color:white;
+  border-style:outset;
+  border-color:#64485C;
+  height:50px;
+  width:100px;
+  font:bold15px arial,sans-serif;
+  text-shadow:none;
+}
+
+/*============
+nav
+=============*/
+nav {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: -300px;
+  bottom: 0;
+  width: 300px;
+  background: #ffffff;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  transition: all .5s;
+  z-index: 3;
+  opacity: 0;
+}
+.open nav {
+  left: 0;
+  opacity: 1;
+}
+nav .inner {
+  padding: 25px;
+}
+nav .inner ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+nav .inner ul li {
+  position: relative;
+  margin: 0;
+  border-bottom: 1px solid #333;
+}
+nav .inner ul li a {
+  display: block;
+  color: #333;
+  font-size: 14px;
+  padding: 1em;
+  text-decoration: none;
+  transition-duration: 0.2s;
+}
+nav .inner ul li a:hover {
+  background: #e4e4e4;
+}
+@media screen and (max-width: 767px) {
+  nav {
+    left: -220px;
+    width: 220px;
+  }
+}
+
+.navbar-brand
+{
+  /* size for brand */
+  font-size: xx-large;
+}
+
+.navbar-brand .purple
+{
+  color: #2E1114;
+}
+/*============
+.toggle_btn
+=============*/
+.toggle_btn {
+  display: block;
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  width: 30px;
+  height: 30px;
+  transition: all .5s;
+  cursor: pointer;
+  z-index: 3;
+}
+.toggle_btn span {
+  display: block;
+  position: absolute;
+  left: 0;
+  width: 30px;
+  height: 2px;
+  background-color: #333;
+  border-radius: 4px;
+  transition: all .5s;
+}
+.toggle_btn span:nth-child(1) {
+  top: 4px;
+}
+.toggle_btn span:nth-child(2) {
+  top: 14px;
+}
+.toggle_btn span:nth-child(3) {
+  bottom: 4px;
+}
+.open .toggle_btn span {
+  background-color: #fff;
+}
+.open .toggle_btn span:nth-child(1) {
+  -webkit-transform: translateY(10px) rotate(-315deg);
+  transform: translateY(10px) rotate(-315deg);
+}
+.open .toggle_btn span:nth-child(2) {
+  opacity: 0;
+}
+.open .toggle_btn span:nth-child(3) {
+  -webkit-transform: translateY(-10px) rotate(315deg);
+  transform: translateY(-10px) rotate(315deg);
+}
+/*============
+#mask
+=============*/
+#mask {
+  display: none;
+  transition: all .5s;
+}
+.open #mask {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  opacity: .8;
+  z-index: 2;
+  cursor: pointer;
+}
+/*============
+main
+=============*/
+main {
+  padding: 50px;
+}
+main h1 {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  text-align: center;
+}
+/*============
+body
+=============*/
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+}
+
+/*ブロック1*/
+.block1 {
+  margin: 5px;
+}
+
+/* .horizontal-list { */
+/* ユーザーはスクロール上下のみの方がつかいやすいのでは...*/
+.horizontal-list
+/* {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+} */
+
+.card {
+  display: inline-block;
+  grid-template-rows: 1fr 1fr 1fr;
+  border-radius: 18px;
+  grid-template-areas: "img" "text" "info";
+  width: 20%;
+  height: 20%;
+  margin: 0px 0px 10px, 10px;
+}
+
+.card-img {
+  grid-area: img;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
+}
+
+.card-text {
+  grid-area: text;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  letter-spacing: 0;
+}
+
+
+.card-title {
+  font-size: 30px;
+  margin-bottom: 10px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.card-info {
+  grid-area: info;
+  display: grid;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  background: #1F4375;
+  padding: 10px;
+}
+
+/*spotsもほぼ一緒、infoの部分のみ変更*/
+.card-info-spots {
+  grid-area: info;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  background: #006336;
+  padding: 10px;
+
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 30px;
+}
+
+.column1 {
+  flex-basis:50%;
+  margin-right:40px;
+}
+
+.column2 {
+  flex-basis:50%;
+}
+
+/*矢印*/
+.triangle-bottom {
+  display: inline-block;;
+  border-style: solid;
+  border-width: 24px 14px 0 14px;
+  border-color: #000 transparent transparent transparent;
+}
+
+/*タイムライン*/
+.Inner {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1200px;
+}
+
+p{
+margin: 0;
+padding: 0;
+}
+
+li{
+list-style: none;
+}
+
+.List-Item {
+border-top: 1px solid #ddd;
+width: 100%;
+}
+
+@media screen and (max-width: 540px) {
+.List-Item {
+border-top: 0;
+  }
+}
+
+.List-Item:nth-of-type(1) {
+border-top: 0;
+}
+
+.List-Item-Content {
+margin-left: auto;
+margin-right: auto;
+padding-top: 30px;
+padding-bottom: 30px;
+max-width: 1100px;
+display: flex;
+align-items: center;
+}
+
+@media screen and (max-width: 540px) {
+.List-Item-Content {
+padding-top: 15px;
+padding-bottom: 15px;
+flex-wrap: wrap;
+  }
+}
+
+.List-Item-Content.one {
+padding-top: 0;
+}
+
+.List-Item-Content-Number {
+position: relative;
+margin-right: 40px;
+border-radius: 50%;
+width: 80px;
+height: 80px;
+line-height: 80px;
+text-align: center;
+background: #5bc8ac;
+color: #fff;
+font-size: 36px;
+}
+
+@media screen and (max-width: 540px) {
+.List-Item-Content-Number {
+margin-right: 20px;
+width: 40px;
+height: 40px;
+line-height: 40px;
+font-size: 24px;
+  }
+}
+
+.List-Item-Content-Number-Line {
+position: absolute;
+top: -36%;
+left: 50%;
+transform: translate(-50%,-50%);
+width: 4px;
+height: 66px;
+background: #5bc8ac;
+}
+
+@media screen and (max-width: 540px) {
+.List-Item-Content-Number-Line {
+top: -80%;
+width: 2px;
+height: 72px;
+  }
+}
+
+.List-Item-Content-Title {
+margin-right: 48px;
+flex-basis: 298px;
+color: #5bc8ac;
+font-size: 24px;
+}
+
+@media screen and (max-width: 540px) {
+.List-Item-Content-Title {
+margin-right: 0;
+max-width: 230px;
+font-size: 18px;
+}
+}
+
+.List-Item-Content-Description {
+line-height: 1.5;
+font-size: 16px;
+}
+
+@media screen and (max-width: 540px) {
+.List-Item-Content-Description {
+margin-left: 60px;
+max-width: 260px;
+font-weight: normal;
+font-size: 13px;
+}
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+#gmap {
+  height: 400px;
+  width: 600px;
+}
+
+#sidebar {
+  flex-basis: 15rem;
+  flex-grow: 1;
+  float: right;
+  padding: 1rem;
+  max-width: 30rem;
+  height: 100%;
+  box-sizing: border-box;
+  overflow: auto;
+}
+
+#map-container {
+  display: flex;
+}
+
+/*infoのテーブル*/
+.container_info_table{
+  width: 100%;
+  border-collapse: collapse;
+  margin: auto;
+}
+
+.container_info_table tr{
+  border-bottom: solid 2px white;
+}
+
+.container_info_table tr:last-child{
+  border-bottom: none;
+}
+
+.container_info_table th{
+  position: relative;
+  text-align: left;
+  width: 30%;
+  background-color: #1F4375;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.container_info_table td{
+  text-align: left;
+  width: 70%;
+  text-align: center;
+  background-color: #eee;
+  padding: 10px 0;
+}
+
+.card-img-info{
+  padding-bottom: 20px;
+  width: 50%;
+  height: auto;
+}
+
+/*タイトル*/
+.title1 {
+  text-align: left;
+  color: black;
+  margin: 10px 30px 30px 30px;
+  font-weight: bold;
+  font-size: 25px;
+
+}
+
+.title2 {
+  text-align: center;
+  color: #1F4375;
+  margin: 10px 30px 30px 30px;
+  font-weight: bold;
+}
+
+.title3 {
+  text-align: center;
+  color: #006336;
+  margin: 10px 30px 30px 30px;
+  font-weight: bold;
+}
+
+/* ページのスタイル */
+.header{
+  font-family: 'Architects Daughter', cursive;
+}
+.header-logo{
+  color: black;
+  font-family: 'Architects Daughter', cursive;
+}
+.container{
+  margin-top: 5%;
+}
+.purple{
+  font-size: 25px;
+}
+
+/* ローディング */
+.loading{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(236, 187, 122, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s;
+  z-index: 999;
+}
+.loading.active{
+  opacity: 1;
+  visibility: visible;
+}
+.img_box{
+  animation: img_box_9955 3s linear infinite;
+  transform-origin: 50% 50%;
+  margin: 1rem 0 !important;
+}
+
+@keyframes img_box_9955 {
+  0% { transform: translateY(0) translateX(100%); opacity: 1; }
+  10% { transform: translateY(-10px) translateX(80%)}
+  20%{ transform: translateY(0) translateX(60%)}
+  30% { transform: translateY(10px) translateX(40%) }
+  40% { transform: translateY(0) translateX(20%) }
+  50%{ transform: translateY(-10px) translateX(0); opacity: 1;}
+  60% { transform: translateY(0) translateX(-20%) }
+  70% { transform: translateY(10px) translateX(-40%) ; opacity: .5;}
+  80% { transform: translateY(0px) translateX(-60%) }
+  90% { transform: translateY(-10px) translateX(-80%) }
+  100% { transform: translateY(0) translateX(-100%); opacity: 0; }
+}
+/* ローディング終了 */
+
+.side-by-side {
+  display:inline-block;
+}
+
+/*星評価*/
+.star5_rating{
+  position: relative;
+  z-index: 0;
+  display: inline-block;
+  white-space: nowrap;
+  color: #CCCCCC; /* グレーカラー 自由に設定化 */
+  /*font-size: 30px; フォントサイズ 自由に設定化 */
+}
+
+.star5_rating:before, .star5_rating:after{
+  content: '★★★★★';
+}
+
+.star5_rating:after{
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  color: #ffcf32; /* イエローカラー 自由に設定化 */
+}
+
+/*ボタン*/
+.btn-circle-sm {
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  font-size: 0.9rem;
+}
+
+/*routeの経由地*/
+ol {
+  counter-reset:number; /*数字をリセット*/
+  list-style-type: none!important; /*数字を一旦消す*/
+  padding: 0.3em 0.8em;
+  border: solid 2px #ffb107;
+}
+ol li {
+  border-bottom: dashed 1px orange;
+  position: relative;
+  padding: 0.5em 0.5em 0.5em 30px;
+  line-height: 1.5em;
+}
+ol li:before{
+  /* 以下数字をつける */
+  position: absolute;
+  counter-increment: number;
+  content: counter(number);
+  /*数字のデザイン変える*/
+  display:inline-block;
+  background: #ffb107;
+  color: white;
+  font-family: 'Avenir','Arial Black','Arial',sans-serif;
+  font-weight:bold;
+  font-size: 15px;
+  border-radius: 50%;
+  left: 0;
+  width: 25px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  /*以下 上下中央寄せのため*/
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+ol li:last-of-type {
+  border-bottom: none; /*最後のliの線だけ消す*/
+}
+
+.trip_title_route
+{
+  list-style-type: none;
+}
+
+.circle{
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: skyblue;
+  text-align:center;
+  line-height: 80px;
+}
+
+#swipeの際のカード
+.index_image_index{
+  margin:  10px 10px 10px 10px;
+  width: 200px;
+  height: 140px;
+  object-fit: cover;
+  width: 50%;
+}
+
+.cardcontainer list{
+  width: 35%;
+  height: 50%;
+}
+/* ファーストビュー */
+p{
+  text-align: center;
+  margin: 20px 0;
+  font-size: 1.5rem;
+  letter-spacing: .5em;
+  word-break : break-all;
+}
+/*========= タイピング ===============*/
+.TextTyping span {
+  display: none;
+}
+
+.TextTyping::after {
+  content: "|";
+  animation: typinganime .8s ease infinite;
+}
+
+@keyframes typinganime{
+  from{opacity:0}
+  to{opacity:1}
+}
+/* tabiji */
+
+.firstview.move{
+
+  opacity: 0;
+  visibility: hidden;
+  transition: 1s;
+}
+.firstview{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(236, 187, 122, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+
+  opacity: 1;
+  visibility: visible;
+}
+
+.tabiji_veiw{
+  text-align: center;
+}
+.firstText{
+  position: absolute;
+  top: 35%;
+}
+
+.text-focus-in {
+font-family: 'Architects Daughter', cursive;
+text-align:center;
+font-size:60px;
+font-weight: bold;
+margin-top: 50px;
+}
+.text-focus-in{
+-webkit-animation: text-focus-in 2.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+        animation: text-focus-in 2.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+}
+@-webkit-keyframes text-focus-in {
+0% {
+  -webkit-filter: blur(12px);
+          filter: blur(12px);
+  opacity: 0;
+}
+100% {
+  -webkit-filter: blur(0px);
+          filter: blur(0px);
+  opacity: 1;
+}
+}
+@keyframes text-focus-in {
+0% {
+  -webkit-filter: blur(12px);
+          filter: blur(12px);
+  opacity: 0;
+}
+100% {
+  -webkit-filter: blur(0px);
+          filter: blur(0px);
+  opacity: 1;
+}
+}
+
+ /* ボーダー */
+ .title-border {
+  display: flex;
+  align-items: center;
+  }
+  .title-border:before,
+  .title-border:after {
+  border-top: 1px solid;
+  content: "";
+  flex-grow: 1;
+  }
+  .title-border:before {
+  margin-right: 1rem;
+  }
+  .title-border:after {
+  margin-left: 1rem;
+  }

@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Spots
+{% endblock %}
+
+{% block main %}
+
+    <!-- <h1>{{ trip_title }}の観光地一覧</h1>
+    
+    <div class="wrapper">
+        <div class="column1">
+            <div class = "info">
+                <table style="margin-right:40px;">
+                    <tr>
+                    <th></th>
+                    <th></th>
+                    </tr>
+                    {% for i in display_photo %}
+                    <tr>
+                        <td>
+                            <form action = "/info" method = "post">
+                                <input name = "site_name" type = "hidden" value = {{i}}>
+                                <input type= "submit" value = "Info"  class = "btn btn-secondary">
+                            </form>
+                        </td>
+                        <td>{{ i }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+        <div class="column2">
+            <div class="info">
+                {% for photo in photos %}
+                    <img class="index_image_index" align="center" src="{{photo}}" alt="">
+                {% endfor %}   -->
+
+    <h2 class = "title3">{{ trip_title }}のお気に入り一覧</h2>
+
+    <ul class="horizontal-list">
+        {% for new_string_list,photos in data %}
+        <div class="card">
+            <div class="card-text">
+                <p>{{ new_string_list }}</p>
+            </div>
+            <img class="card-img" src="{{ photos }}" alt="">
+            <div class="card-info-spots">
+                <form action = "/info" method = "post">
+                    <input name = "new_string_list" type = "hidden" value = "{{new_string_list}}">
+                    <button class="btn btn-dark btn-circle btn-circle-sm m-1" type="submit" value = "info"><i class="fa fa-search"></i></button>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+    </ul>    
+
+    <div>
+        <form action = "/route" method = "post">
+            <input name = "site_name" type = "hidden" value = {{trip_title}}>
+            <input type= "submit" value = "ルートを確認"  class = "btn btn-secondary">
+        </form>
+    </div>
+{% endblock %}

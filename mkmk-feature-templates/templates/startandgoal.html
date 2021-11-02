@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Start and Goal
+{% endblock %}
+
+
+{% block main %}
+<h2 class = "title2">スタート地点とゴール地点</h2>
+<form action="/startandgoal" method="post">
+    <div class="form-group">
+        <input name = "trips_id" type = "hidden" value = {{trips_id}}>
+
+        <div class="wrapper">
+            <input autocomplete="off" autofocus class="form-control" name="start_place" placeholder="出発地点" type="text">
+            <!--一旦消す-->
+            <!--<input autocomplete="off" autofocus class="form-control" name="start_time" placeholder="出発時間" type="datetime-local">-->
+        </div>
+
+        <div class="triangle-bottom"></div>
+
+        <div class="wrapper">
+            <input autocomplete="off" autofocus class="form-control" name="goal_place" placeholder="ゴール地点" type="text">
+        </div>
+
+        <label for="area_l">交通手段</label>
+        <select name="mode" size="1">
+            <option value="">選択してください</option>
+            <option selected value="driving">車</option>
+            <option value="walking">徒歩</option>
+        </select>
+
+        <input type= "submit" value = "submit"  class = "btn btn-secondary">
+    </div>
+</form>
+{% endblock %}
