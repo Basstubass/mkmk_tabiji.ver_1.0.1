@@ -39,5 +39,5 @@ A few motivating and useful examples of how your product can be used. Spice this
 ### Finally
 
 ### Menber
-buss_tubasu
-yilm01
+ ・buss_tubasu
+　　・yilm01
