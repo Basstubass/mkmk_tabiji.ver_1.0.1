@@ -40,4 +40,5 @@ A few motivating and useful examples of how your product can be used. Spice this
 
 ### Menber
  ・buss_tubasu
-　　・yilm01
+　・yilm01
+git hubとなかよくなれねえよ
