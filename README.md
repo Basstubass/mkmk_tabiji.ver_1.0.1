@@ -4,7 +4,7 @@
 It is a new kind of app that allows you to search for where you want to go and swipe to find nearby tourist attractions.
 It searches not only locations but also routes.
 
-![image1](https://user-images.githubusercontent.com/68532052/139634056-6b413940-3b8f-44dd-93c3-4b6908ab2bc9.png)
+![Tabi](https://user-images.githubusercontent.com/68532052/166087764-c5c3f07a-c0bc-44dc-8f9f-582b2db86403.png)
 
 ## Installation
 
@@ -41,3 +41,5 @@ A few motivating and useful examples of how your product can be used. Spice this
 ### Menber
  ・buss_tubasu
 　・yilm01
+
+
